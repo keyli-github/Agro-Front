@@ -1,40 +1,46 @@
-// lib/core/theme/app_theme.dart
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFF1B3022); // dark green
-  static const Color secondary = Color(0xFF2D4F37); // medium green
-  static const Color textDark = Color(0xFF2D2D2D);
-
-  static const Color backgroundBeige = Color(0xFFFDF5E6);
-  static const Color scaffoldBeige = Color(0xFFF5F5DC);
-
-  static const Color whiteTranslucent =
-      Color.fromRGBO(255, 255, 255, 0.7);
-  static const Color dividerLight =
-      Color.fromRGBO(0, 0, 0, 0.05);
-
+  static const Color primary = Color(0xFF1B3022); 
+  static const Color secondary = Color(0xFF4C6D4F);
+  static const Color accent = Color(0xFFF39C12); // Para el Premium
+  
+  static const Color scaffoldBeige = Color(0xFFF8F9FA); 
+  static const Color surfaceWhite = Colors.white;
+  static const Color textDark = Color(0xFF1A1A1A);
+  static const Color textLight = Color(0xFF757575);
   static const Color error = Color(0xFFB00020);
 }
 
 class AppTheme {
   static ThemeData light() {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: AppColors.primary,
-      surface: AppColors.scaffoldBeige,
-      error: AppColors.error,
-      brightness: Brightness.light,
-    );
-
     return ThemeData(
       useMaterial3: true,
-      colorScheme: colorScheme,
-
+      brightness: Brightness.light,
       scaffoldBackgroundColor: AppColors.scaffoldBeige,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primary,
+        surface: AppColors.surfaceWhite,
+        error: AppColors.error,
+      ),
 
-      // -----------------
-      // AppBar global
-      // -----------------
+      // Estilo de la Barra de Navegación (Lo que tenías con error)
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: Colors.white,
+        indicatorColor: AppColors.secondary.withOpacity(0.2),
+        labelTextStyle: WidgetStateProperty.all(
+          const TextStyle(
+            fontSize: 12, 
+            fontWeight: FontWeight.w500, 
+            color: AppColors.textDark
+          ),
+        ),
+        iconTheme: WidgetStateProperty.all(
+          const IconThemeData(size: 26),
+        ),
+      ),
+
+      // Configuración de AppBar
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
@@ -42,69 +48,14 @@ class AppTheme {
         centerTitle: true,
       ),
 
-      // -----------------
-      // Floating button
-      // -----------------
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-      ),
-
-      // -----------------
-      // Texto global
-      // -----------------
+      // Tipografía
       textTheme: const TextTheme(
         bodyMedium: TextStyle(color: AppColors.textDark),
-        bodyLarge: TextStyle(color: AppColors.textDark),
-        titleMedium: TextStyle(
-          color: AppColors.textDark,
-          fontWeight: FontWeight.w600,
+        titleLarge: TextStyle(
+          color: AppColors.textDark, 
+          fontWeight: FontWeight.bold
         ),
-      ),
-
-      // -----------------
-      // Inputs globales (MUY IMPORTANTE)
-      // -----------------
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.primary,
-            width: 2,
-          ),
-        ),
-
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.error,
-          ),
-        ),
-      ),
-
-      // -----------------
-      // Dividers
-      // -----------------
-      dividerTheme: const DividerThemeData(
-        color: AppColors.dividerLight,
-        thickness: 1,
       ),
     );
   }
 }
-

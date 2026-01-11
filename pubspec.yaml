@@ -19,10 +19,6 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0 
   path_provider: ^2.1.2
-  
-  # Usamos la comunidad para evitar el error de Manifest de Isar 3.1
-  isar_community: ^3.2.0
-  isar_community_flutter_libs: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -34,7 +30,6 @@ dev_dependencies:
   freezed: ^2.4.7
   json_serializable: ^6.7.1
   riverpod_generator: ^2.3.9
-  isar_community_generator: ^3.2.0
 
 flutter:
   uses-material-design: true

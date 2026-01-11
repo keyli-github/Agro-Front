@@ -3,6 +3,7 @@ allprojects {
         google()
         mavenCentral()
     }
+    buildDir = File(rootProject.projectDir, "../build/${project.name}")
 }
 
 // HEMOS QUITADO EL BLOQUE subprojects QUE CAUSABA EL ERROR
