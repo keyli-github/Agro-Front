@@ -19,6 +19,9 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0 
   path_provider: ^2.1.2
+  share_plus: ^8.0.0
+  flutter_local_notifications: ^17.2.0
+  permission_handler: ^11.4.0
 
 dev_dependencies:
   flutter_test:

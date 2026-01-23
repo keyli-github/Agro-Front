@@ -4,6 +4,8 @@ class AppColors {
   static const Color primary = Color(0xFF1B3022); 
   static const Color secondary = Color(0xFF4C6D4F);
   static const Color accent = Color(0xFFF39C12); // Para el Premium
+  // Acción principal (botones 'Elige un desafío', indicadores)
+  static const Color actionGreen = Color(0xFF0F8C77);
   
   static const Color scaffoldBeige = Color(0xFFF8F9FA); 
   static const Color surfaceWhite = Colors.white;
@@ -28,16 +30,14 @@ class AppTheme {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: Colors.white,
         indicatorColor: AppColors.secondary.withOpacity(0.2),
-        labelTextStyle: WidgetStateProperty.all(
+        labelTextStyle: MaterialStateProperty.all(
           const TextStyle(
-            fontSize: 12, 
-            fontWeight: FontWeight.w500, 
-            color: AppColors.textDark
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+            color: AppColors.textDark,
           ),
         ),
-        iconTheme: WidgetStateProperty.all(
-          const IconThemeData(size: 26),
-        ),
+        iconTheme: MaterialStateProperty.all(const IconThemeData(size: 26)),
       ),
 
       // Configuración de AppBar
@@ -52,10 +52,26 @@ class AppTheme {
       textTheme: const TextTheme(
         bodyMedium: TextStyle(color: AppColors.textDark),
         titleLarge: TextStyle(
-          color: AppColors.textDark, 
-          fontWeight: FontWeight.bold
+          color: AppColors.textDark,
+          fontWeight: FontWeight.bold,
         ),
       ),
+    );
+  }
+
+  // Reutilizable: decoración de tarjetas coherente en la app
+  static BoxDecoration cardDecoration() {
+    return BoxDecoration(
+      color: AppColors.surfaceWhite,
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: Colors.grey[300]!, width: 1),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.05),
+          blurRadius: 10,
+          offset: const Offset(0, 2),
+        ),
+      ],
     );
   }
 }

@@ -1,6 +1,5 @@
 //lib/shared/widgets/agro_app_bar.dart
 import 'package:flutter/material.dart';
-import 'package:agro/core/theme/app_theme.dart';
 import 'notification_badge.dart';
 
 class AgroAppBar extends StatelessWidget implements PreferredSizeWidget {

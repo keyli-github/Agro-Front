@@ -5,8 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agro/core/theme/app_theme.dart';
 import 'widgets/agro_app_bar.dart';
 import 'widgets/profile_icon.dart';
+import 'package:agro/features/profile/presentation/profile_settings_page.dart';
 import 'package:agro/core/providers/user_provider.dart';
-import 'package:agro/core/providers/notification_provider.dart';
+import 'package:agro/core/router/app_router.dart';
 
 class MainNavShell extends ConsumerWidget {
   final Widget child;
@@ -64,7 +65,7 @@ class MainNavShell extends ConsumerWidget {
                   selectedIndex: selectedIndex,
                   icon: Icons.show_chart,
                   selectedIcon: Icons.show_chart,
-                  label: 'Precio y productos',
+                  label: 'Productos verificados',
                 ),
                 _buildNavItem(
                   context: context,
@@ -88,144 +89,14 @@ class MainNavShell extends ConsumerWidget {
     WidgetRef ref,
     UserState userState,
   ) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-      ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(height: 24),
-            const CircleAvatar(
-              radius: 30,
-              backgroundColor: AppColors.primary,
-              child: Icon(Icons.person, size: 40, color: Colors.white),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              userState.isLoggedIn
-                  ? userState.username ?? 'Usuario'
-                  : 'No registrado',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              userState.isLoggedIn ? userState.email ?? '' : 'Inicia sesión',
-              style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (userState.isLoggedIn) {
-                    ref.read(userProvider.notifier).state = UserState();
-                  } else {
-                    ref.read(userProvider.notifier).state = UserState(
-                      isLoggedIn: true,
-                      username: 'Juan',
-                      email: 'juan@example.com',
-                    );
-                  }
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Text(
-                  userState.isLoggedIn ? 'Cerrar sesión' : 'Iniciar sesión',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+    Navigator.of(context, rootNavigator: true).push(
+      MaterialPageRoute(builder: (ctx) => ProfileSettingsPage()),
     );
   }
 
   void _showNotificationModal(BuildContext context, WidgetRef ref) {
-    final notificationState = ref.watch(notificationProvider);
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-      ),
-      builder: (context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(height: 24),
-            const Icon(Icons.flash_on, color: Color(0xFFF4B626), size: 48),
-            const SizedBox(height: 16),
-            const Text(
-              'Notificaciones',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Tienes ${notificationState.count} notificación${notificationState.count > 1 ? 'es' : ''}',
-              style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                onPressed: () {
-                  ref.read(notificationProvider.notifier).state =
-                      NotificationState(count: 0);
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text(
-                  'Marcar como leído',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    // Open the rewards screen as a full-screen modal, covering the shell
+    context.go('/rewards');
   }
 
   Widget _buildNavItem({
@@ -302,7 +173,7 @@ class MainNavShell extends ConsumerWidget {
       case 0:
         return 'Evita errores que cuestan dinero';
       case 1:
-        return 'Calendario de aplicación';
+        return 'Plan de aplicación';
       case 2:
         return 'Presupuestos y productos';
       case 3:
