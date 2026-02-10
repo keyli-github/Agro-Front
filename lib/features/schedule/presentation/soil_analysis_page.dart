@@ -15,57 +15,58 @@ class SoilAnalysisPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: AppColors.textDark),
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
         ),
-        title: const Text(
-          'Análisis del suelo',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: AppColors.textDark,
-          ),
+        title: Row(
+          children: [
+            Icon(Icons.science, color: AppColors.actionGreen, size: 20),
+            const SizedBox(width: 8),
+            const Flexible(
+              child: Text(
+                'ANÁLISIS SUELO - Dosis exacta',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.actionGreen,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
         ),
+        titleSpacing: 0,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Título principal
+            // Subtítulo
             const Text(
-              'ANÁLISIS SUELO - Dosis exacta',
+              'Dosis exacta por hectárea\nBasado en análisis UNSM',
               style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textDark,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Dosis exacta por hectarea\nBasado en analisis UNSM',
-              style: TextStyle(
-                fontSize: 14,
+                fontSize: 13,
                 color: AppColors.textDark,
                 height: 1.4,
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             // Sección ENVIO DIRECTO A TARAPOTO
             _buildDirectShippingSection(),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             // Sección RECOJO EN TU PARCELA
             _buildParcelPickupSection(),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             // Nota UNSM
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.06),
+                    color: Colors.black.withOpacity(0.04),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -75,13 +76,13 @@ class SoilAnalysisPage extends StatelessWidget {
                 'Análisis realizado en la Universidad Nacional de San Martín (UNSM)',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 11,
                   color: AppColors.textDark,
                   fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             // Botón NO, GRACIAS
             SizedBox(
@@ -90,18 +91,19 @@ class SoilAnalysisPage extends StatelessWidget {
                 onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 14),
-                  side: const BorderSide(color: AppColors.textLight, width: 1),
+                  side: const BorderSide(color: AppColors.textLight, width: 1.5),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
                 child: const Text(
-                  'NO, GRACIAS\nSEGUIR FERTILIZANDO SIN ANALISIS',
+                  'NO, GRACIAS\nSEGUIR FERTILIZANDO SIN ANÁLISIS',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.textLight,
                     fontWeight: FontWeight.w600,
-                    fontSize: 13,
+                    fontSize: 12,
+                    height: 1.3,
                   ),
                 ),
               ),
@@ -110,13 +112,14 @@ class SoilAnalysisPage extends StatelessWidget {
 
             // Nota final
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFF3CD),
+                color: const Color(0xFFFFF9E6),
                 borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: const Color(0xFFFFE082)),
               ),
               child: const Text(
-                'Fertilizar sin analisis es gastar a ciegas.\nCon analisis, cada sol tiene respaldo tecnico.',
+                'Fertilizar sin análisis es gastar a ciegas.\nCon análisis, cada sol tiene respaldo técnico.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,
@@ -126,7 +129,7 @@ class SoilAnalysisPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 24),
           ],
         ),
       ),
@@ -138,9 +141,10 @@ class SoilAnalysisPage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -151,31 +155,38 @@ class SoilAnalysisPage extends StatelessWidget {
         children: [
           // Header
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             decoration: const BoxDecoration(
-              color: Color(0xFFE8F5E8),
+              color: Color(0xFFFFF3E0),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                const Text(
-                  'ENVIO DIRECTO A TARAPOTO',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textDark,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  'Tú tomas la muestra y la envías.',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: AppColors.textDark,
+                Icon(Icons.local_shipping, color: Colors.orange.shade700, size: 20),
+                const SizedBox(width: 8),
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'ENVÍO DIRECTO A TARAPOTO',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textDark,
+                        ),
+                      ),
+                      Text(
+                        'Tú tomas la muestra y la envías.',
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: AppColors.textDark,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -183,57 +194,133 @@ class SoilAnalysisPage extends StatelessWidget {
           ),
           // Content
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '¿Que recibes?',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textDark,
-                  ),
+                Row(
+                  children: [
+                    Icon(Icons.card_giftcard, color: AppColors.actionGreen, size: 18),
+                    const SizedBox(width: 6),
+                    const Text(
+                      '¿Qué recibes?',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textDark,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                _buildBulletPoint('Resultado del laboratorio (UNSM)'),
-                _buildBulletPoint('Interpretación técnica en lenguaje simple'),
-                _buildBulletPoint('Recomendacion exacta por hectárea'),
-                _buildBulletPoint('Desbloqueo del plan semanal'),
-                _buildBulletPoint('Respaldo técnico en tu historial'),
-                _buildBulletPoint('Resultados cargado directo a tu perfil'),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
+                _buildCheckPoint('Resultado del laboratorio (UNSM)'),
+                _buildCheckPoint('Interpretación técnica en lenguaje simple'),
+                _buildCheckPoint('Recomendación exacta por hectárea'),
+                _buildCheckPoint('Desbloqueo del plan semanal'),
+                _buildCheckPoint('Respaldo técnico en tu historial'),
+                _buildCheckPoint('Resultados cargado directo a tu perfil'),
+                const SizedBox(height: 14),
+                
                 // Instrucciones
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF5F5F5),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Instrucciones paso a paso',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.textDark,
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F5F5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: AppColors.actionGreen,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.list_alt,
+                            color: Colors.white,
+                            size: 16,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Etiqueta descargable AGRO\nA Recomendado solo si ya has enviado muestras antes',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: AppColors.textDark,
-                          height: 1.4,
+                        const SizedBox(width: 10),
+                        const Expanded(
+                          child: Text(
+                            'Instrucciones paso a paso',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textDark,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 14,
+                          color: AppColors.actionGreen,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
+                
+                // Etiqueta descargable
+                InkWell(
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF5F5F5),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: AppColors.actionGreen,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        const Expanded(
+                          child: Text(
+                            'Etiqueta descargable AGRO',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textDark,
+                            ),
+                          ),
+                        ),
+                        const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 14,
+                          color: AppColors.actionGreen,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                
+                const Text(
+                  '⚠️ Recomendado solo si ya has enviado muestras antes',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: AppColors.textLight,
+                    height: 1.3,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                
                 // Botón
                 SizedBox(
                   width: double.infinity,
@@ -241,7 +328,7 @@ class SoilAnalysisPage extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.actionGreen,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 13),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -251,8 +338,8 @@ class SoilAnalysisPage extends StatelessWidget {
                       'ELEGIR ENVÍO DIRECTO - S/ 180.00',
                       style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
                       ),
                     ),
                   ),
@@ -270,9 +357,10 @@ class SoilAnalysisPage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.06),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -283,52 +371,67 @@ class SoilAnalysisPage extends StatelessWidget {
         children: [
           // Header
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             decoration: const BoxDecoration(
-              color: Color(0xFFE3F2FD),
+              color: Color(0xFFE8F5E9),
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    const Text(
-                      'RECOJO EN TU PARCELA',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textDark,
+                Icon(Icons.agriculture, color: AppColors.actionGreen, size: 20),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            'RECOJO EN TU PARCELA',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.textDark,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: AppColors.actionGreen,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text(
+                              'MÁS SEGURO',
+                              style: TextStyle(
+                                fontSize: 8,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: AppColors.actionGreen,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'MAS SEGURO',
+                      const SizedBox(height: 2),
+                      const Text(
+                        'MÁS SEGURO - MENOS ERRORES',
                         style: TextStyle(
-                          fontSize: 8,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
+                          fontSize: 10,
+                          color: AppColors.textDark,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                const Text(
-                  'MAS SEGURO - MENOS ERRORES\nV Recomendado por AGRO',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: AppColors.textDark,
-                    height: 1.4,
+                      const Text(
+                        '✓ Recomendado por AGRO',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: AppColors.actionGreen,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -336,48 +439,62 @@ class SoilAnalysisPage extends StatelessWidget {
           ),
           // Content
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '¿Que recibes?',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.textDark,
-                  ),
+                Row(
+                  children: [
+                    Icon(Icons.card_giftcard, color: AppColors.actionGreen, size: 18),
+                    const SizedBox(width: 6),
+                    const Text(
+                      '¿Qué recibes?',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textDark,
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 12),
-                _buildBulletPoint('Incluye logistica, control de calidad y reduccion de errores'),
-                _buildBulletPoint('Agrupa envios por zona'),
-                _buildBulletPoint('Resultado del laboratorio (UNSM)'),
-                _buildBulletPoint('Interpretación técnica en lenguaje simple'),
-                _buildBulletPoint('Recomendacion exacta por hectarea'),
-                _buildBulletPoint('Desbloqueo del plan semanal'),
-                _buildBulletPoint('Respaldo técnico en tu historial'),
-                _buildBulletPoint('Resultados cargado directo a tu perfil'),
-                const SizedBox(height: 16),
+                const SizedBox(height: 10),
+                _buildCheckPoint('Incluye logística, control de calidad y reducción de errores'),
+                _buildCheckPoint('Agrupa envíos por zona'),
+                _buildCheckPoint('Resultado del laboratorio (UNSM)'),
+                _buildCheckPoint('Interpretación técnica en lenguaje simple'),
+                _buildCheckPoint('Recomendación exacta por hectárea'),
+                _buildCheckPoint('Desbloqueo del plan semanal'),
+                _buildCheckPoint('Respaldo técnico en tu historial'),
+                _buildCheckPoint('Resultados cargado directo a tu perfil'),
+                const SizedBox(height: 14),
+                
                 // Botón
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      backgroundColor: AppColors.actionGreen,
+                      padding: const EdgeInsets.symmetric(vertical: 13),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       elevation: 0,
                     ),
-                    child: const Text(
-                      'RESERVAR RECOJO - S/ 200.00',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'RESERVAR RECOJO - S/ 200.00',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        const Icon(Icons.star, color: Colors.yellow, size: 16),
+                      ],
                     ),
                   ),
                 ),
@@ -389,31 +506,30 @@ class SoilAnalysisPage extends StatelessWidget {
     );
   }
 
-  Widget _buildBulletPoint(String text) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(top: 5),
-          width: 4,
-          height: 4,
-          decoration: const BoxDecoration(
-            color: AppColors.textDark,
-            shape: BoxShape.circle,
+  Widget _buildCheckPoint(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(
+            Icons.check,
+            color: AppColors.actionGreen,
+            size: 16,
           ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 12,
-              color: AppColors.textDark,
-              height: 1.4,
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontSize: 11,
+                color: AppColors.textDark,
+                height: 1.4,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

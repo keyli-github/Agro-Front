@@ -28,18 +28,21 @@ class ErrorsPage extends ConsumerWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
+            
             // Perfil del cafetal
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CafatalProfileCard(
                 profile: cafatalProfile,
                 onPersonalize: () {
-                  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (_) => const RegisterCafatalWizardPage()));
+                  Navigator.of(context, rootNavigator: true).push(
+                    MaterialPageRoute(builder: (_) => const RegisterCafatalWizardPage())
+                  );
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             // Botones de acción
             Padding(
@@ -59,14 +62,14 @@ class ErrorsPage extends ConsumerWidget {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             // Datos locales
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: LocalDataCard(data: localData),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             // Programas, bonos y proyectos
             Padding(
@@ -81,6 +84,13 @@ class ErrorsPage extends ConsumerWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: const Color(0xFFE5E7EB)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.04),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
                   child: Row(
                     children: [
@@ -112,11 +122,11 @@ class ErrorsPage extends ConsumerWidget {
                             ),
                             SizedBox(height: 4),
                             Text(
-                              'Apoyos y beneficios\ndisponibles en tu\nzona',
+                              'Apoyos y beneficios disponibles en tu zona',
                               style: TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textLight,
-                                height: 1.3,
+                                height: 1.4,
                               ),
                             ),
                           ],
@@ -133,63 +143,64 @@ class ErrorsPage extends ConsumerWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 32),
 
             // Sección de consejos
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Consejos',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF1B1B1B),
+            if (advice.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Consejos',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF1B1B1B),
+                        letterSpacing: -0.3,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  ...advice.map((adv) => Column(
-                    children: [
-                      AdviceCard(
+                    const SizedBox(height: 16),
+                    ...advice.map((adv) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: AdviceCard(
                         advice: adv,
                         onTap: () {
                           GoRouter.of(context).push('/crop_advice_detail');
                         },
                       ),
-                      const SizedBox(height: 12),
-                    ],
-                  )),
-                ],
+                    )),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
-            ),
 
             // Sección de recomendaciones
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Recomendaciones',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF1B1B1B),
+            if (recommendations.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Recomendaciones',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF1B1B1B),
+                        letterSpacing: -0.3,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12),
-                  ...recommendations.map((rec) => Column(
-                    children: [
-                      RecommendationCard(recommendation: rec),
-                      const SizedBox(height: 12),
-                    ],
-                  )),
-                ],
+                    const SizedBox(height: 16),
+                    ...recommendations.map((rec) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: RecommendationCard(recommendation: rec),
+                    )),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
 
             // Asesor
             Padding(
@@ -203,7 +214,7 @@ class ErrorsPage extends ConsumerWidget {
                 },
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 40),
           ],
         ),
       ),

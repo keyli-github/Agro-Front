@@ -31,6 +31,112 @@ class TrainingsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Logo del certificado
+              Center(
+                child: Column(
+                  children: [
+                    Container(
+                      width: 180,
+                      height: 180,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.surfaceWhite,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.08),
+                            blurRadius: 16,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 160,
+                            height: 160,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: const Color(0xFFD0C4A8),
+                                width: 6,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 60,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE8E0D0),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.eco,
+                                  size: 35,
+                                  color: Color(0xFF9E8B6F),
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              const Text(
+                                'PRODUCTOR',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFF9E8B6F),
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                              const Text(
+                                'CAFETERO',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color(0xFF9E8B6F),
+                                  letterSpacing: 1.2,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 3,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE8E0D0),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const Text(
+                                  '2026',
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFF9E8B6F),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'CERTIFICADO DE PRODUCTOR',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFF9E8B6F),
+                        letterSpacing: 0.8,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+              ),
               const Text(
                 'Capacitaciones presenciales',
                 style: TextStyle(
@@ -46,7 +152,7 @@ class TrainingsPage extends StatelessWidget {
                 crossAxisCount: 3,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
-                childAspectRatio: 0.85,
+                childAspectRatio: 0.95,
                 children: [
                   _buildTrainingCard('Nutrición y\nFertilización', false),
                   _buildTrainingCard('Manejo de\nsuelos y\nconservación', false),
@@ -72,7 +178,7 @@ class TrainingsPage extends StatelessWidget {
                 crossAxisCount: 3,
                 mainAxisSpacing: 12,
                 crossAxisSpacing: 12,
-                childAspectRatio: 0.85,
+                childAspectRatio: 0.95,
                 children: [
                   _buildTrainingCard('Nutrición y\nFertilización', false),
                   _buildTrainingCard('Nutrición y\nFertilización', false),
@@ -159,14 +265,14 @@ class TrainingsPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
             child: Text(
               title,
               style: const TextStyle(
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textDark,
-                height: 1.2,
+                height: 1.1,
               ),
               textAlign: TextAlign.center,
               maxLines: 3,

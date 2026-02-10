@@ -30,7 +30,7 @@ class UreaVerificationPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Product header
+            // Product image and verification
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
@@ -45,36 +45,60 @@ class UreaVerificationPage extends StatelessWidget {
                 ],
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Product image placeholder
+                  Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade100,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.inventory_2_outlined,
+                        size: 88,
+                        color: Colors.grey.shade400,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(Icons.verified, color: AppColors.actionGreen, size: 24),
-                      const SizedBox(width: 8),
-                      const Text(
-                        'Producto verificado',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.actionGreen,
-                        ),
+                      Row(
+                        children: [
+                          Icon(Icons.verified, color: AppColors.actionGreen, size: 16),
+                          const SizedBox(width: 4),
+                          const Text(
+                            'Producto verificado',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.actionGreen,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, color: AppColors.actionGreen, size: 16),
+                          const SizedBox(width: 4),
+                          const Text(
+                            'Disponible en San Martín',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.actionGreen,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'INCAFERT\nUREA\nERTILIEATE\n\nFINKAFERT\n\nINKAFERT UREA',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                      height: 1.4,
-                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
             // Price section
             Container(
@@ -94,38 +118,40 @@ class UreaVerificationPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Precio típico en San Martin',
+                    'Precio típico en San Martín',
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.textLight,
                     ),
                   ),
+                  const SizedBox(height: 4),
                   const Text(
                     's/ 90 - 110',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textDark,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: Colors.orange.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.red.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.warning, color: Colors.orange, size: 16),
+                        Icon(Icons.cancel, color: Colors.red, size: 18),
                         const SizedBox(width: 8),
                         const Expanded(
                           child: Text(
-                            'NO USAR AHORA\nAplicarlo ahora puede significar\ngasto sin respuesta del cultivo.',
+                            'NO USAR AHORA\nAplicarlo ahora puede significar gasto sin respuesta del cultivo.',
                             style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.orange,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 11,
+                              color: Colors.red,
+                              fontWeight: FontWeight.w600,
+                              height: 1.3,
                             ),
                           ),
                         ),
@@ -135,171 +161,173 @@ class UreaVerificationPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
-            // Statistics section with navigation
-            GestureDetector(
-              onTap: () => context.push('/urea_statistics'),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.06),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: Text(
-                            'ESTADISTICAS',
+            // Statistics and History row
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => context.push('/urea_statistics'),
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.06),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Expanded(
+                                child: Text(
+                                  'ESTADÍSTICAS',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.textDark,
+                                  ),
+                                ),
+                              ),
+                              Icon(Icons.chevron_right, color: AppColors.textLight, size: 20),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Diciembre',
                             style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.textDark,
+                              fontSize: 11,
+                              color: AppColors.textLight,
                             ),
                           ),
-                        ),
-                        Icon(Icons.chevron_right, color: AppColors.textLight),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Diciembre',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textLight,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: Text(
+                          const SizedBox(height: 12),
+                          const Text(
                             'Tendencia del precio',
                             style: TextStyle(
-                              fontSize: 12,
-                              color: AppColors.textDark,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: const Text(
-                            '2.07%',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.red,
+                              fontSize: 11,
                               fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'Motivo: El precio de la u ...',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: AppColors.textLight,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Disponible en San Martin',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.actionGreen,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-
-            // History section with navigation
-            GestureDetector(
-              onTap: () => context.push('/urea_history'),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.06),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: Text(
-                            'HISTORIAL',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
                               color: AppColors.textDark,
                             ),
                           ),
-                        ),
-                        Icon(Icons.chevron_right, color: AppColors.textLight),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Como te ha ido con el precio en el tiempo.',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textLight,
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.arrow_downward, color: Colors.red, size: 24),
+                              const SizedBox(width: 4),
+                              Icon(Icons.arrow_upward, color: AppColors.actionGreen, size: 24),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: Colors.red.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text(
+                              '2.07%',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Motivo: El precio de la u...',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: AppColors.textLight,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => context.push('/urea_history'),
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.06),
+                            blurRadius: 8,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              const Expanded(
+                                child: Text(
+                                  'HISTORIAL',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.textDark,
+                                  ),
+                                ),
+                              ),
+                              Icon(Icons.chevron_right, color: AppColors.textLight, size: 20),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Cómo te ha ido con el precio en el tiempo.',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: AppColors.textLight,
+                              height: 1.3,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
             // Alert section
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.1),
+                color: Colors.orange.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.red.withOpacity(0.3)),
+                border: Border.all(color: Colors.orange.withOpacity(0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.warning, color: Colors.red, size: 20),
+                      Icon(Icons.warning_amber_rounded, color: Colors.orange, size: 20),
                       const SizedBox(width: 8),
                       const Text(
                         'ALERTA',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.w700,
-                          color: Colors.red,
+                          color: Colors.orange,
                         ),
                       ),
                     ],
@@ -309,13 +337,14 @@ class UreaVerificationPage extends StatelessWidget {
                     'Se ha reportado que el precio de urea subió fuerte este mes en la región',
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.red,
+                      color: Colors.orange,
+                      height: 1.3,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
             // Purchase registration section
             Container(
@@ -335,7 +364,7 @@ class UreaVerificationPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Le compre a',
+                    'Registra tu compra',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
@@ -344,47 +373,20 @@ class UreaVerificationPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'Registra tu compra',
+                    'Recuerda que esta información será registrada en tu expediente técnico y no podrás editarle',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 11,
                       color: AppColors.textLight,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  const Text(
-                    'Recuerda que esta informacion sera registrada en tu expediente tecnico y no podras editarle',
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: AppColors.textLight,
+                      height: 1.3,
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: Text(
-                          'S/ en la tienda',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: AppColors.textDark,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Text(
-                          '100',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: AppColors.textDark,
-                          ),
-                        ),
-                      ),
-                    ],
+                  const Text(
+                    'Le compré a _____ S/ en la tienda _____',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: AppColors.textDark,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
@@ -413,7 +415,7 @@ class UreaVerificationPage extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
             // Product verification section
             Container(
@@ -432,25 +434,32 @@ class UreaVerificationPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Verifica tu producto',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.textDark,
-                    ),
+                  Row(
+                    children: [
+                      const Expanded(
+                        child: Text(
+                          'Verifica tu producto',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textDark,
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.chevron_right, color: AppColors.textLight, size: 20),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   _buildVerificationField('Registro sanitario'),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 1),
                   _buildVerificationField('Fecha de vencimiento'),
-                  const SizedBox(height: 12),
-                  _buildVerificationField('Numero de lote'),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 1),
+                  _buildVerificationField('Número de lote'),
+                  const SizedBox(height: 1),
                   _buildVerificationField('Concentración'),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 1),
                   _buildVerificationField('Nombre del fabricante'),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 1),
                   _buildVerificationField('Sellos de seguridad'),
                 ],
               ),
@@ -464,10 +473,11 @@ class UreaVerificationPage extends StatelessWidget {
 
   Widget _buildVerificationField(String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(8),
+        border: Border(
+          bottom: BorderSide(color: Colors.grey.shade300, width: 1),
+        ),
       ),
       child: Row(
         children: [
@@ -480,7 +490,6 @@ class UreaVerificationPage extends StatelessWidget {
               ),
             ),
           ),
-          Icon(Icons.edit, size: 16, color: AppColors.textLight),
         ],
       ),
     );

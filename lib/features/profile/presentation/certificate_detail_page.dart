@@ -306,14 +306,28 @@ class CertificateDetailPage extends StatelessWidget {
 }
 
 Widget _buildStaticTrainingItem(String title) {
-  return Container(
-    width: double.infinity,
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12),
-      border: Border.all(color: const Color(0xFFE5E7EB)),
+  return SizedBox(
+    height: 50,
+    child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.textDark,
+            height: 1.0,
+          ),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+        ),
+      ),
     ),
-    child: Text(title, style: const TextStyle(fontSize: 14, color: AppColors.textDark)),
   );
 }

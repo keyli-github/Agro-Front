@@ -49,7 +49,7 @@ class _BasicPlanPageState extends State<BasicPlanPage> {
             if (!_showCultivationStages) ...[
               // Pantalla inicial con calendario
               const Text(
-                'UN CALENDARIO CHIQUITO',
+                '',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,

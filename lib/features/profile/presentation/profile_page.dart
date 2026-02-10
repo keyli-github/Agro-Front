@@ -21,7 +21,7 @@ class ProfilePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil', style: TextStyle(color: AppColors.textDark)),
+        title: const Text('Perfil', style: TextStyle(color: AppColors.textDark, fontWeight: FontWeight.w600)),
         backgroundColor: AppColors.surfaceWhite,
         elevation: 0,
         centerTitle: false,
@@ -31,11 +31,7 @@ class ProfilePage extends ConsumerWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.edit, color: AppColors.textDark),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: AppColors.textDark),
+            icon: const Icon(Icons.edit, color: AppColors.textLight),
             onPressed: () {},
           ),
         ],
@@ -47,45 +43,30 @@ class ProfilePage extends ConsumerWidget {
           child: Column(
             children: [
               // Header con foto de perfil
-              Container(
-                color: AppColors.surfaceWhite,
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 120,
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.grey.shade300, width: 2),
-                          ),
-                          child: const Center(
-                            child: Icon(Icons.person, size: 60, color: Colors.grey),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            width: 36,
-                            height: 36,
-                            decoration: BoxDecoration(
-                              color: AppColors.actionGreen,
-                              shape: BoxShape.circle,
-                              border: Border.all(color: AppColors.surfaceWhite, width: 2),
-                            ),
-                            child: const Icon(Icons.add, color: AppColors.surfaceWhite, size: 20),
-                          ),
-                        ),
-                      ],
+              Padding(
+                padding: const EdgeInsets.only(top: 24, bottom: 16),
+                child: Center(
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.grey.shade300, width: 3),
                     ),
-                  ],
+                    child: const Center(
+                      child: Icon(Icons.person, size: 60, color: Colors.grey),
+                    ),
+                  ),
                 ),
               ),
-              
+
+              // Línea divisoria
+              Container(
+                height: 1,
+                color: Colors.grey.shade300,
+              ),
+
               const SizedBox(height: 16),
 
               // Información del usuario
@@ -95,43 +76,39 @@ class ProfilePage extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Nombre y Username
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: AppTheme.cardDecoration().copyWith(
-                        borderRadius: BorderRadius.circular(12),
+                    Text(
+                      userState.username ?? profile.ownerName,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textDark,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            userState.username ?? profile.ownerName,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textDark,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '@${userState.username?.toLowerCase() ?? 'Ney5263'} • se unió el enero del 2026',
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: AppColors.textLight,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Text(
-                            'Productor de ${profile.variety ?? 'café'}, ${profile.area ?? '0'} ha en ${profile.location}.',
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: AppColors.textDark,
-                            ),
-                          ),
-                        ],
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '@${userState.username?.toLowerCase() ?? 'Ney5263'} • se unió el enero del 2026',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: AppColors.textLight,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Productor de ${profile.variety ?? 'café'}, ${profile.area ?? '0'} ha en ${profile.location}.',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: AppColors.textDark,
+                        height: 1.4,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
 
                     // Cultivo y Nivel de Productor
                     Row(
@@ -150,24 +127,25 @@ class ProfilePage extends ConsumerWidget {
                             'Productor',
                             'Inicial',
                             Icons.eco,
-                            Color(0xFF7CB342),
+                            const Color(0xFF9E9D24),
+                            subtitle: 'Nivel actual',
                           ),
                         ),
                       ],
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 24),
 
                     // Resumen de tu campaña
                     const Text(
                       'Resumen de tu campaña',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: AppColors.textDark,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 16),
 
                     Row(
                       children: [
@@ -176,14 +154,14 @@ class ProfilePage extends ConsumerWidget {
                             'Análisis de suelo realizados',
                             soilAnalysisCount.toString(),
                             Icons.science,
-                            Color(0xFF7E57C2),
+                            const Color(0xFF7E57C2),
                           ),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
                           child: _buildStatCard(
                             'Días desde la última fertilización',
-                            '?',
+                            '0',
                             Icons.help_outline,
                             AppColors.textLight,
                           ),
@@ -193,52 +171,118 @@ class ProfilePage extends ConsumerWidget {
 
                     const SizedBox(height: 16),
 
-                    // Estado técnico
+                    // Estado del cafetal
                     Container(
                       padding: const EdgeInsets.all(16),
-                      decoration: AppTheme.cardDecoration().copyWith(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: const Color(0xFFFFB74D), width: 2),
                       ),
                       child: Row(
                         children: [
-                          const Text(
-                            'Estado técnico:',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.textDark,
+                          Container(
+                            width: 52,
+                            height: 52,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFFFB74D),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color(0xFFFFB74D).withOpacity(0.4),
+                                  blurRadius: 8,
+                                  spreadRadius: 0,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: const Icon(
+                              Icons.park,
+                              color: Colors.white,
+                              size: 28,
                             ),
                           ),
                           const SizedBox(width: 12),
-                          Container(
-                            width: 12,
-                            height: 12,
-                            decoration: const BoxDecoration(
-                              color: AppColors.actionGreen,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            'Estable',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.textDark,
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      'Estado del cafetal:',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.textDark,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 2),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 8,
+                                      height: 8,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFFFB74D),
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 6),
+                                    const Text(
+                                      'En riesgo',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.textDark,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Completa tu información y registra actividades para mejorar tu estado.',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: AppColors.textLight,
+                                    height: 1.3,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
 
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 24),
 
-                    const Text(
-                      'Logros',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.textDark,
-                      ),
+                    // Logros
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Logros',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.textDark,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'VER TODOS',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.actionGreen,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 12),
 
@@ -247,13 +291,15 @@ class ProfilePage extends ConsumerWidget {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CertificatePage()));
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => const CertificatePage())
+                              );
                             },
                             child: _buildAchievementCard(
                               'Certificado de productor',
                               certificationProgress,
                               Icons.workspace_premium,
-                              Color(0xFFFFB74D),
+                              const Color(0xFFFFB74D),
                             ),
                           ),
                         ),
@@ -261,13 +307,15 @@ class ProfilePage extends ConsumerWidget {
                         Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrainingsPage()));
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => const TrainingsPage())
+                              );
                             },
                             child: _buildAchievementCard(
                               'Capacitaciones',
                               trainingsCount.toDouble(),
                               Icons.school,
-                              Color(0xFFFFD54F),
+                              const Color(0xFFFFD54F),
                               isCount: true,
                             ),
                           ),
@@ -286,46 +334,79 @@ class ProfilePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildInfoCard(String label, String value, IconData icon, Color iconColor) {
+  Widget _buildInfoCard(String label, String value, IconData icon, Color iconColor, {String? subtitle}) {
     return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: AppTheme.cardDecoration().copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 13,
-              color: AppColors.textLight,
-            ),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Container(
-                width: 36,
-                height: 36,
-                decoration: BoxDecoration(
-                  color: iconColor.withOpacity(0.1),
-                  shape: BoxShape.circle,
+        ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: AppColors.textDark,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                child: Icon(icon, color: iconColor, size: 20),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
+                const SizedBox(height: 4),
+                Text(
                   value,
                   style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
                     color: AppColors.textDark,
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ],
+                if (subtitle != null)
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textLight,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: iconColor,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: iconColor.withOpacity(0.4),
+                  blurRadius: 8,
+                  spreadRadius: 0,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Icon(icon, color: Colors.white, size: 28),
           ),
         ],
       ),
@@ -334,12 +415,22 @@ class ProfilePage extends ConsumerWidget {
 
   Widget _buildStatCard(String label, String value, IconData icon, Color iconColor) {
     return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: AppTheme.cardDecoration().copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             label,
@@ -347,28 +438,48 @@ class ProfilePage extends ConsumerWidget {
               fontSize: 13,
               color: AppColors.textDark,
               fontWeight: FontWeight.w600,
+              height: 1.3,
             ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 12),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                width: 48,
-                height: 48,
+                width: 52,
+                height: 52,
                 decoration: BoxDecoration(
-                  color: iconColor.withOpacity(0.1),
+                  color: iconColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: iconColor.withOpacity(0.4),
+                      blurRadius: 8,
+                      spreadRadius: 0,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Icon(icon, color: Colors.white, size: 28),
+              ),
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(icon, color: iconColor, size: 24),
-              ),
-              const SizedBox(width: 12),
-              Text(
-                value,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textDark,
+                child: Center(
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textDark,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -380,12 +491,22 @@ class ProfilePage extends ConsumerWidget {
 
   Widget _buildAchievementCard(String label, double value, IconData icon, Color iconColor, {bool isCount = false}) {
     return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: AppTheme.cardDecoration().copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      decoration: BoxDecoration(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFE5E7EB)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             label,
@@ -393,34 +514,49 @@ class ProfilePage extends ConsumerWidget {
               fontSize: 13,
               color: AppColors.textDark,
               fontWeight: FontWeight.w600,
+              height: 1.3,
             ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 14),
           Center(
             child: Container(
-              width: 64,
-              height: 64,
+              width: 68,
+              height: 68,
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.2),
+                color: iconColor,
                 shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: iconColor.withOpacity(0.4),
+                    blurRadius: 12,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
-              child: Icon(icon, color: iconColor, size: 32),
+              child: Icon(icon, color: Colors.white, size: 36),
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 14),
           if (!isCount)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: AppColors.actionGreen,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                '${value.toStringAsFixed(2)} % completa',
-                style: const TextStyle(
-                  fontSize: 11,
-                  color: AppColors.surfaceWhite,
-                  fontWeight: FontWeight.w600,
+            Center(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(
+                  color: AppColors.actionGreen,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  '[${value.toStringAsFixed(2)}% completa]',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: AppColors.surfaceWhite,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             )
@@ -429,7 +565,7 @@ class ProfilePage extends ConsumerWidget {
               child: Text(
                 value.toInt().toString(),
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 26,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textDark,
                 ),
