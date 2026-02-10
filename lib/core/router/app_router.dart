@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:agro/shared/main_nav_shell.dart';
+import 'package:agro/features/welcome/presentation/welcome_screen.dart';
+import 'package:agro/features/welcome/presentation/onboarding_screen.dart';
 
 // Importa las nuevas páginas (debes crearlas o renombrar las existentes)
 // Por ahora usaré placeholders para que no te de error
@@ -34,9 +36,19 @@ final routerProvider = Provider<GoRouter>((ref) {
   final shellNavigatorKey = GlobalKey<NavigatorState>();
 
   return GoRouter(
-    initialLocation: '/errors',
+    initialLocation: '/welcome',
     navigatorKey: rootNavigatorKey,
     routes: [
+      GoRoute(
+        name: 'welcome',
+        path: '/welcome',
+        builder: (context, state) => const WelcomeScreen(),
+      ),
+      GoRoute(
+        name: 'onboarding',
+        path: '/onboarding',
+        builder: (context, state) => const OnboardingScreen(),
+      ),
       GoRoute(
         name: 'rewards',
         path: '/rewards',
